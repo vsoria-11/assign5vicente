@@ -25,4 +25,4 @@ monthly_sharpe_ratio = mean_excess_return / std_dev_return
 st.print()
 st.print()
 st.print(f"Ticker: {ticker}")
-st.print(f"Monthly Sharpe Ratio: {monthly_sharpe_ratio:.3f}"
+st.print(f"Monthly Sharpe Ratio: {monthly_sharpe_ratio:.3f}")
