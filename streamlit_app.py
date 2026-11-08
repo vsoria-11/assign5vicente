@@ -1,16 +1,26 @@
-import streamlit as st
 import yfinance as yf
+import pandas as pd
 
-st.title("AAPL 5-Year Average Stock Price")
+# Define the ticker and risk-free rate
+ticker = 'AAPL'
+rf_monthly = 0.0025  # 0.25% per month
 
-#5 YEARS AAPL DATA
-data = yf.Ticker("AAPL").history(period="5y")
+# Download monthly stock price data for the past 5 years
+data = yf.download(ticker, period='5y', interval='1mo')
+close_prices = data['Close'][ticker]
 
-if not data.empty:
-    #CALCULATE AVERAGE CLOSING PRICE
-    overall_average = data['Close'].mean()
-    
-    #PRINT RESULT
-    st.metric(label="5-Year Average Price", value=f"${overall_average:.2f}")
-else:
-    st.error("No data found for AAPL.")
+# Calculate monthly returns
+monthly_returns = close_prices.pct_change().dropna()
+
+# Calculate average excess return and standard deviation of returns
+excess_returns = monthly_returns - rf_monthly
+mean_excess_return = excess_returns.mean()
+std_dev_return = monthly_returns.std()
+
+# Calculate the Monthly Sharpe Ratio
+monthly_sharpe_ratio = mean_excess_return / std_dev_return
+
+print()
+print()
+print(f"Ticker: {ticker}")
+print(f"Monthly Sharpe Ratio: {monthly_sharpe_ratio:.3f}")
