@@ -3,6 +3,8 @@ import yfinance as yf
 import streamlit as st
 import pandas as pd
 
+st.title("MSFT Monthly Sharpe Ratio")
+
 # Define the ticker and risk-free rate
 ticker = 'MSFT'
 rf_monthly = 0.0025  # 0.25% per month
