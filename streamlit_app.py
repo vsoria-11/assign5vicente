@@ -1,5 +1,6 @@
 # Import necessary packages (Make sure to also include in "requirements.txt" in this repository.)
 import yfinance as yf
+import streamlit as st
 import pandas as pd
 
 # Define the ticker and risk-free rate
@@ -21,7 +22,7 @@ std_dev_return = monthly_returns.std()
 # Calculate the Monthly Sharpe Ratio
 monthly_sharpe_ratio = mean_excess_return / std_dev_return
 
-print()
-print()
-print(f"Ticker: {ticker}")
-print(f"Monthly Sharpe Ratio: {monthly_sharpe_ratio:.3f}")
+st.print()
+st.print()
+st.print(f"Ticker: {ticker}")
+st.print(f"Monthly Sharpe Ratio: {monthly_sharpe_ratio:.3f}"
